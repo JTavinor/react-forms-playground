@@ -12,7 +12,13 @@ function ReactHookForm(props) {
 
   return (
     <div className="formDiv">
-      <h1 className="hello">Hello</h1>
+      <div className="wrap">
+        <div className="bg-color">
+          <div className="inner">
+            <h1 className="hello">Hello</h1>
+          </div>
+        </div>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         lab
@@ -24,6 +30,12 @@ function ReactHookForm(props) {
         <button type="submit">Submit</button>
       </form>
       <h1 className="goodbye">Goodbye</h1>
+      <p className="border-gradient">Hello</p>
+      <div className="testOuterOuter">
+        <div className="testOuter">
+          <div className="testInner"></div>
+        </div>
+      </div>
     </div>
   );
 }

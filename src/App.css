@@ -54,16 +54,16 @@ form {
   align-items: center;
 }
 
-input {
+/* input {
   width: 60%;
   margin-bottom: 10px;
   height: 2rem;
   padding: 0 10px;
   position: relative;
-  /* border: none; */
-  /* border-radius: 5%; */
-  /* outline: none; */
-}
+  border: none;
+  border-radius: 5%;
+  outline: none;
+} */
 
 .hello {
   position: relative;
@@ -159,4 +159,140 @@ input {
 
 .goodbye::after {
   content: "wow";
+}
+
+.border-gradient {
+  border-width: 5px 5px 5px 5px;
+  border-image: linear-gradient(
+    45deg,
+    rgba(100, 57, 242, 1) 0%,
+    rgba(242, 55, 55, 1) 100%
+  );
+  border-image-slice: 9;
+  border-style: solid;
+}
+
+.wrap {
+  display: inline-block;
+}
+
+.inner {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 18%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  width: calc(100% + 10px);
+}
+
+.bg-color {
+  height: inherit;
+  width: inherit;
+  background-color: white;
+}
+
+.testInner {
+  /* border: 1px solid green; */
+  height: 50px;
+  background-color: white;
+  width: 800px;
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.testOuter {
+  /* border: 1px solid red; */
+  background-color: blue;
+  height: 52px;
+  width: 802px;
+  position: relative;
+  z-index: 5;
+}
+
+.testOuterOuter {
+  height: 52px;
+  width: 802px;
+}
+
+.testOuter:hover {
+  animation: animates1 1s linear forwards;
+}
+
+@keyframes animates1 {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.mainContainer {
+  height: 100vh;
+  width: 100vw;
+  background-color: #081229;
+  display: flex;
+}
+
+.loginFormCont {
+  padding: 20px 10px;
+  width: 50%;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.floatingLabelGroup {
+  position: relative;
+  width: 100%;
+  margin-top: 25px;
+}
+
+#firstFloatingLabelGroup {
+  margin-top: 0;
+}
+
+.floatingLabel {
+  font-size: 1.2rem;
+  color: #cccccc;
+  position: absolute;
+  pointer-events: none;
+  padding: 0 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 12px;
+  transition: all 0.1s ease;
+}
+
+.floatingInputField {
+  width: 100%;
+  height: 2rem;
+  position: relative;
+}
+
+.floatingInputField:focus ~ .floatingLabel,
+.floatingInputField:not(:focus):valid ~ .floatingLabel {
+  top: 0px;
+  bottom: 0px;
+  left: 5px;
+  font-size: 0.9rem;
+  height: 1rem;
+  opacity: 1;
+  color: #404040;
+  background-color: white;
+}
+
+.inputErrorMessage {
+  color: red;
+  align-self: start;
+}
+
+.floatingLabelForm {
+  width: 45%;
+  margin: auto;
 }
