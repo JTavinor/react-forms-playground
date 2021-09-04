@@ -1,6 +1,28 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+// Special Form component:
+//  Takes as props:
+//      a function to use onSubmit
+//      names of all fields
+//          In form of object? In order to associate with a validation object?
+//      initial State for hidden classname
+//      formHeading
+//
+
+const props = {
+  formSubmit: "onSubmit",
+  formFields: [
+    { name: "loginEmail", validation: { required: true }, type: "text" },
+    { name: "loginPassword", validation: { required: true }, type: "password" },
+  ],
+  hiddenClass: { className: "loginHidden", initialHidden: false },
+  formHeading: "Create Account",
+  submitFormButtonText: "Submit",
+  changeFormHeading: "Don't have an account?",
+  changeFormButtonText: "Register",
+};
+
 function LoginForm(props) {
   const {
     register,
@@ -14,13 +36,12 @@ function LoginForm(props) {
   const onSubmit = (data) => console.log(data);
 
   const [loginHidden, setLoginHidden] = useState("");
-  const [loginNotHidden, setLoginNotHidden] = useState("loginNotHidden");
   const [registerHidden, setRegisterHidden] = useState("registerHidden");
 
   return (
     <div style={{ overflow: "hidden", width: "100vw", position: "relative" }}>
       <div className="mainContainer">
-        <div className={`loginFormCont ${registerHidden} register`}>
+        <div className={`loginFormCont ${registerHidden} positionFormGroup`}>
           <h1>Create Account</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="floatingLabelForm">
             <div className="floatingLabelGroup" id="firstFloatingLabelGroup">
@@ -60,6 +81,7 @@ function LoginForm(props) {
                 })}
                 id="password"
                 className="floatingInputField"
+                type="password"
                 required
               />
               <label htmlFor="password" className="floatingLabel">
@@ -80,13 +102,12 @@ function LoginForm(props) {
             onClick={() => {
               setRegisterHidden("registerHidden");
               setLoginHidden("");
-              setLoginNotHidden("loginNotHidden");
             }}
           >
             Go to Login
           </button>
         </div>
-        <div className={`loginFormCont ${loginHidden} ${loginNotHidden} login`}>
+        <div className={`loginFormCont ${loginHidden}  positionFormGroup`}>
           <h1>Sign in to Slow Habits</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="floatingLabelForm">
             <div className="floatingLabelGroup" id="firstFloatingLabelGroup">
@@ -134,7 +155,6 @@ function LoginForm(props) {
             onClick={() => {
               setLoginHidden("hidden");
               setRegisterHidden("");
-              setLoginNotHidden("");
             }}
           >
             Register

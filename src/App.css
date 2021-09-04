@@ -239,7 +239,26 @@ form {
   display: flex;
   overflow-x: hidden;
   display: relative;
+
+  /* background-image: linear-gradient(
+    23deg,
+    rgba(8, 18, 41, 1) 0%,
+    rgba(15, 50, 75, 1) 34%,
+    rgba(18, 89, 105, 1) 67%,
+    rgba(39, 154, 189, 1) 100%
+  );
+  background-size: 500%;
+  animation: bg-animation 20s infinite alternate; */
 }
+
+/* @keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+} */
 
 .loginFormCont {
   padding: 30px 10px;
@@ -268,7 +287,7 @@ form {
   top: 50%;
   transform: translateY(-50%);
   left: 10px;
-  transition: all 0.1s ease;
+  transition: all 0.3s ease;
 }
 
 .floatingInputField {
@@ -315,15 +334,7 @@ form {
   transform: translateX(100vw);
 } */
 
-.register {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transition: transform 1s;
-  transform: translate(-50%, -50%);
-}
-
-.login {
+.positionFormGroup {
   position: absolute;
   top: 50%;
   left: 50%;
