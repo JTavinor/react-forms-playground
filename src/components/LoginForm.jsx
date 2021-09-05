@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import "../loginForm.css";
+
 // Special Form component:
 //  Takes as props:
 //      a function to use onSubmit
@@ -42,19 +44,19 @@ function LoginForm(props) {
   const onRegisterSubmit = (data) => console.log(data, "registerform");
 
   const [loginHidden, setLoginHidden] = useState("");
-  const [registerHidden, setRegisterHidden] = useState("registerHidden");
+  const [registerHidden, setRegisterHidden] = useState("hideToLeft");
 
   return (
-    <div style={{ overflow: "hidden", width: "100vw", position: "relative" }}>
-      <div className="mainContainer">
-        <div className={`loginFormCont ${registerHidden} positionFormGroup`}>
+    <div className="overFlowControl">
+      <div className="formPageContainer">
+        <div className={`formContainer ${registerHidden}`}>
           <h1>Create Account</h1>
           <form
             key={1}
             onSubmit={handleSubmit(onRegisterSubmit)}
             className="floatingLabelForm"
           >
-            <div className="floatingLabelGroup" id="firstFloatingLabelGroup">
+            <div className="floatingLabelGroup">
               <input
                 {...register("name", { required: true })}
                 id="name"
@@ -101,30 +103,30 @@ function LoginForm(props) {
             {errors.password && (
               <div className="inputErrorMessage">Password is required</div>
             )}
-            <button type="submit" className="loginButton">
+            <button type="submit" className="submitButton">
               Register
             </button>
           </form>
           <div className="divider" />
-          <h2 className="noAccount">Already have an account?</h2>
+          <h2 className="switchFormHeading">Already have an account?</h2>
           <button
-            className="loginButton hideButton"
+            className="submitButton switchFormButton"
             onClick={() => {
-              setRegisterHidden("registerHidden");
+              setRegisterHidden("hideToLeft");
               setLoginHidden("");
             }}
           >
             Go to Login
           </button>
         </div>
-        <div className={`loginFormCont ${loginHidden}  positionFormGroup`}>
+        <div className={`formContainer ${loginHidden}`}>
           <h1>Sign in to Slow Habits</h1>
           <form
             key={2}
             onSubmit={handleSubmit2(onLoginSubmit)}
             className="floatingLabelForm"
           >
-            <div className="floatingLabelGroup" id="firstFloatingLabelGroup">
+            <div className="floatingLabelGroup">
               <input
                 {...register2("loginEmail", { required: true })}
                 id="loginEmail"
@@ -158,16 +160,16 @@ function LoginForm(props) {
             {errors2.loginPassword && (
               <div className="inputErrorMessage">Password is required</div>
             )}
-            <button type="submit" className="loginButton">
+            <button type="submit" className="submitButton">
               Submit
             </button>
           </form>
           <div className="divider" />
-          <h2 className="noAccount">Don't have an account?</h2>
+          <h2 className="switchFormHeading">Don't have an account?</h2>
           <button
-            className="loginButton hideButton"
+            className="submitButton switchFormButton"
             onClick={() => {
-              setLoginHidden("hidden");
+              setLoginHidden("hideToRight");
               setRegisterHidden("");
             }}
           >
