@@ -4,6 +4,7 @@ import ReactFinalForm from "./components/ReactFinalForm";
 import ReactHookForm from "./components/ReactHookForm";
 import HTMLForm from "./components/HTMLForm";
 import LoginForm from "./components/LoginForm";
+import RefactorLoginForm from "./components/RefactorLoginForm";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       {/* <ReactFinalForm /> */}
       {/* <ReactHookForm /> */}
       {/* <HTMLForm /> */}
-      <LoginForm />
+      {/* <LoginForm /> */}
+      <RefactorLoginForm />
     </div>
   );
 }
