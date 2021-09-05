@@ -238,7 +238,7 @@ form {
   background-color: #081229;
   display: flex;
   overflow-x: hidden;
-  display: relative;
+  position: relative;
 
   /* background-image: linear-gradient(
     23deg,

@@ -27,13 +27,19 @@ function LoginForm(props) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
+  const {
+    register: register2,
+    formState: { errors: errors2 },
+    handleSubmit: handleSubmit2,
+  } = useForm({
+    mode: "onBlur",
+  });
 
-  const onSubmit = (data) => console.log(data);
+  const onLoginSubmit = (data) => console.log(data, "loginform");
+  const onRegisterSubmit = (data) => console.log(data, "registerform");
 
   const [loginHidden, setLoginHidden] = useState("");
   const [registerHidden, setRegisterHidden] = useState("registerHidden");
@@ -43,7 +49,11 @@ function LoginForm(props) {
       <div className="mainContainer">
         <div className={`loginFormCont ${registerHidden} positionFormGroup`}>
           <h1>Create Account</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="floatingLabelForm">
+          <form
+            key={1}
+            onSubmit={handleSubmit(onRegisterSubmit)}
+            className="floatingLabelForm"
+          >
             <div className="floatingLabelGroup" id="firstFloatingLabelGroup">
               <input
                 {...register("name", { required: true })}
@@ -109,39 +119,43 @@ function LoginForm(props) {
         </div>
         <div className={`loginFormCont ${loginHidden}  positionFormGroup`}>
           <h1>Sign in to Slow Habits</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="floatingLabelForm">
+          <form
+            key={2}
+            onSubmit={handleSubmit2(onLoginSubmit)}
+            className="floatingLabelForm"
+          >
             <div className="floatingLabelGroup" id="firstFloatingLabelGroup">
               <input
-                {...register("email", { required: true })}
-                id="email"
+                {...register2("loginEmail", { required: true })}
+                id="loginEmail"
                 className="floatingInputField"
                 required
               />
-              <label htmlFor="email" className="floatingLabel">
+              <label htmlFor="loginEmail" className="floatingLabel">
                 Email
               </label>
               {/* errors will return when field validation fails  */}
             </div>
-            {errors.email && (
+            {errors2.loginEmail && (
               <div className="inputErrorMessage">Email is required</div>
             )}
             <div className="floatingLabelGroup">
               <input
-                {...register("password", {
+                {...register2("loginPassword", {
                   required: true,
                   type: "password",
                   minLength: 5,
                 })}
-                id="password"
+                id="loginPassword"
                 className="floatingInputField"
                 required
               />
-              <label htmlFor="password" className="floatingLabel">
+              <label htmlFor="loginPassword" className="floatingLabel">
                 Password
               </label>
-              {/* errors will return when field validation fails  */}
+              {/* errors2 will return when field validation fails  */}
             </div>
-            {errors.password && (
+            {errors2.loginPassword && (
               <div className="inputErrorMessage">Password is required</div>
             )}
             <button type="submit" className="loginButton">
