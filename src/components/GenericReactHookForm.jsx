@@ -1,24 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-
-// Need to have the values for hidden, + the functions to change whether the form is hidden in the parent
-
-const props = {
-  formSubmit: "onSubmit",
-  formFields: [
-    { refName: "loginEmail", validation: { required: true }, type: "text" },
-    {
-      refName: "loginPassword",
-      validation: { required: true },
-      type: "password",
-    },
-  ],
-  hiddenClass: { className: "loginHidden", initialHidden: false },
-  formHeading: "Create Account",
-  submitFormButtonText: "Submit",
-  changeFormHeading: "Don't have an account?",
-  changeFormButtonText: "Register",
-};
+import FormFields from "./FormFields";
 
 function GenericReactHookForm({
   formFields,
@@ -28,7 +10,7 @@ function GenericReactHookForm({
   changeFormHeading,
   submitFormButtonText,
   hidden,
-  changeHidden,
+  swapForms,
 }) {
   const {
     register,
@@ -40,25 +22,11 @@ function GenericReactHookForm({
     <div className={`formContainer ${hidden}`}>
       <h1>{formHeading}</h1>
       <form onSubmit={handleSubmit(formSubmit)} className="floatingLabelForm">
-        {formFields.map(({ refName, validation, type, name }) => (
-          <>
-            <div className="floatingLabelGroup">
-              <input
-                {...register(refName, { ...validation })}
-                id={refName}
-                className="floatingInputField"
-                required
-                type={type}
-              />
-              <label htmlFor={refName} className="floatingLabel">
-                {name}
-              </label>
-            </div>
-            {errors[refName] && (
-              <div className="inputErrorMessage">{name} is required</div>
-            )}
-          </>
-        ))}
+        <FormFields
+          formFields={formFields}
+          register={register}
+          errors={errors}
+        />
         <button type="submit" className="submitButton">
           {submitFormButtonText}
         </button>
@@ -68,7 +36,7 @@ function GenericReactHookForm({
       <button
         className="submitButton switchFormButton"
         onClick={() => {
-          changeHidden();
+          swapForms();
         }}
       >
         {changeFormButtonText}

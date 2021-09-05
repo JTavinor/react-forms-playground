@@ -45,13 +45,18 @@ const loginFormFields = [
   },
 ];
 
+// Page containing two forms that move off or on the screen when toggled
 function RefactorLoginForm() {
-  const onSubmit = (data) => console.log(data);
-
+  // Variables + method used to set classname on form
   const [registerHidden, setRegisterHidden] = useState("hideToLeft");
   const [loginHidden, setLoginHidden] = useState("");
 
-  const changeHidden = () => {
+  const swapForms = () => {
+    //
+    // WILL NEED AN EXTRA CONDITIONAL IN HERE
+    // SUBSCRIBE TO REDUX LOADING PARAMETER ON AUTH AND USER
+    // IF LOADING THEN PREVENT CHANGING FORMS
+    //
     if (registerHidden) {
       setRegisterHidden("");
       setLoginHidden("hideToRight");
@@ -61,28 +66,32 @@ function RefactorLoginForm() {
     }
   };
 
+  // Set these functions to whatever you want to do on form submission
+  const onLoginSubmit = (data) => console.log(data);
+  const onRegisterSubmit = (data) => console.log(data);
+
   return (
     <div className="overFlowControl">
       <div className="formPageContainer">
         <GenericReactHookForm
-          formSubmit={onSubmit}
+          formSubmit={onRegisterSubmit}
           formFields={registerFormFields}
           formHeading="Create Account"
           submitFormButtonText="Register"
           changeFormHeading="Already have an account?"
           changeFormButtonText="Go to Login"
-          changeHidden={changeHidden}
+          swapForms={swapForms}
           hidden={registerHidden}
         />
         <GenericReactHookForm
-          formSubmit={onSubmit}
+          formSubmit={onLoginSubmit}
           formFields={loginFormFields}
           hiddenClass={{ className: "loginHidden", initialHidden: false }}
           formHeading="Sign in to Slow Habits"
           submitFormButtonText="Login"
           changeFormHeading="Don't have an account?"
           changeFormButtonText="Register"
-          changeHidden={changeHidden}
+          swapForms={swapForms}
           hidden={loginHidden}
         />
       </div>
